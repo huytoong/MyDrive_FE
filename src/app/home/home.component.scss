@@ -1,0 +1,95 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f1f3f4;
+  border-bottom: 1px solid #dadce0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.search-bar {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  width: 100%;
+  max-width: 600px;
+  padding: 8px;
+  border: 1px solid #dadce0;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-bar button {
+  padding: 8px 16px;
+  border: 1px solid #dadce0;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  background-color: #4285f4;
+  color: white;
+  cursor: pointer;
+}
+
+.account {
+  margin-left: 20px;
+}
+
+.account span {
+  margin-right: 10px;
+}
+
+.main {
+  display: flex;
+  flex-grow: 1;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #dadce0;
+}
+
+.create-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.menu li:hover,
+.menu li.active {
+  background-color: #e8f0fe;
+  color: #4285f4;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}

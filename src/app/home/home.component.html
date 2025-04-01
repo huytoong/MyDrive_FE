@@ -1,0 +1,44 @@
+<div class="container">
+  <header class="header">
+    <div class="logo">MyDrive</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Tìm kiếm trong Drive" [(ngModel)]="searchQuery" (keyup.enter)="search()" />
+      <button (click)="search()">Tìm</button>
+    </div>
+    <div class="account">
+      <span>{{ username }}</span>
+      <button (click)="logout()">Đăng xuất</button>
+    </div>
+  </header>
+
+  <div class="main">
+    <aside class="sidebar">
+      <button class="create-btn" (click)="createNew()">+ Tạo mới</button>
+      <ul class="menu">
+        <li (click)="showMyDrive()" [class.active]="activeTab === 'myDrive'">Drive của tôi</li>
+        <li (click)="showShared()" [class.active]="activeTab === 'shared'">Được chia sẻ với tôi</li>
+        <li (click)="showStorage()" [class.active]="activeTab === 'storage'">Bộ nhớ</li>
+      </ul>
+    </aside>
+
+    <section class="content">
+      <ng-container [ngSwitch]="activeTab">
+        <div *ngSwitchCase="'myDrive'">
+          <h2>Drive của tôi</h2>
+          <p>Danh sách file/folder của bạn sẽ ở đây.</p>
+        </div>
+        <div *ngSwitchCase="'shared'">
+          <h2>Được chia sẻ với tôi</h2>
+          <p>Danh sách file/folder được chia sẻ sẽ ở đây.</p>
+        </div>
+        <div *ngSwitchCase="'storage'">
+          <h2>Bộ nhớ</h2>
+          <p>Thông tin bộ nhớ: 5GB/15GB đã dùng.</p>
+        </div>
+        <div *ngSwitchDefault>
+          <h2>Chào mừng đến với MyDrive</h2>
+        </div>
+      </ng-container>
+    </section>
+  </div>
+</div>
