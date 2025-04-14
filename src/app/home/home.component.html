@@ -12,20 +12,98 @@
   </header>
 
   <div class="main">
-    <aside class="sidebar">
+    <!-- <aside class="sidebar">
       <button class="create-btn" (click)="createNew()">+ Tạo mới</button>
       <ul class="menu">
         <li (click)="showMyDrive()" [class.active]="activeTab === 'myDrive'">Drive của tôi</li>
         <li (click)="showShared()" [class.active]="activeTab === 'shared'">Được chia sẻ với tôi</li>
         <li (click)="showStorage()" [class.active]="activeTab === 'storage'">Bộ nhớ</li>
       </ul>
+    </aside> -->
+    <aside class="sidebar">
+      <button mat-flat-button color="primary" [matMenuTriggerFor]="createMenu">+ Tạo mới</button>
+    
+      <mat-menu #createMenu="matMenu">
+        <button mat-menu-item (click)="openCreateFolder()">📁 Tạo thư mục</button>
+        <button mat-menu-item (click)="openUploadFile()">⬆️ Upload tệp</button>
+      </mat-menu>
+    
+      <ul class="menu">
+        <li (click)="showMyDrive()" [class.active]="activeTab === 'myDrive'">Drive của tôi</li>
+        <li (click)="showShared()" [class.active]="activeTab === 'shared'">Được chia sẻ với tôi</li>
+        <li (click)="showStorage()" [class.active]="activeTab === 'storage'">Bộ nhớ</li>
+      </ul>
     </aside>
-
     <section class="content">
       <ng-container [ngSwitch]="activeTab">
         <div *ngSwitchCase="'myDrive'">
           <h2>Drive của tôi</h2>
           <p>Danh sách file/folder của bạn sẽ ở đây.</p>
+        
+<!-- <div *ngFor="let file of files" class="file-item">
+  <span>{{ file.name }}</span>
+
+  <button mat-icon-button [matMenuTriggerFor]="fileMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  
+  <mat-menu #fileMenu="matMenu">
+    <button mat-menu-item (click)="openFileDetail(file)">
+      <mat-icon>info</mat-icon>
+      <span>Xem chi tiết</span>
+    </button>
+    <button mat-menu-item (click)="downloadFile(file)">
+      <mat-icon>cloud_download</mat-icon>
+      <span>Tải xuống</span>
+    </button>
+    <button mat-menu-item (click)="deleteFile(file)">
+      <mat-icon>delete</mat-icon>
+      <span>Xoá</span>
+    </button>
+  </mat-menu>
+</div>
+
+<ng-container *ngIf="selectedFile">
+  <app-file-detail [file]="selectedFile" (closeDetail)="selectedFile = null"></app-file-detail>
+</ng-container>
+           -->
+           <div *ngFor="let file of files" class="file-item">
+            <span>{{ file.name }}</span>
+          
+            <!-- Gắn menu trigger với menu khai báo trong vòng lặp -->
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          
+            <!-- Mỗi vòng lặp tạo một menu riêng -->
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="openFileDetail(file)">
+                <mat-icon>info</mat-icon>
+                <span>Xem chi tiết</span>
+              </button>
+              <button mat-menu-item (click)="downloadFile(file)">
+                <mat-icon>cloud_download</mat-icon>
+                <span>Tải xuống</span>
+              </button>
+              <button mat-menu-item (click)="renameFile(file)">
+                <mat-icon>edit</mat-icon>
+                <span>Đổi tên</span>
+              </button>
+              <button mat-menu-item (click)="shareFile(file)">
+                <mat-icon>share</mat-icon>
+                <span>Chia sẻ</span>
+              </button>
+              <button mat-menu-item (click)="deleteFile(file)">
+                <mat-icon>delete</mat-icon>
+                <span>Xoá</span>
+              </button>
+            </mat-menu>
+          </div>
+          <ng-container *ngIf="selectedFile">
+            <app-file-detail [file]="selectedFile" (closeDetail)="selectedFile = null"></app-file-detail>
+          </ng-container>
+          
+          
         </div>
         <div *ngSwitchCase="'shared'">
           <h2>Được chia sẻ với tôi</h2>
